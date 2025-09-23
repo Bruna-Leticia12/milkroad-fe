@@ -37,7 +37,7 @@ export class LoginComponent {
         this.loading = false;
         this.snack.open('Login efetuado!', 'OK', { duration: 2000 });
         // redirecionar para dashboard (a implementar)
-        this.router.navigate(['/']);
+        this.router.navigate(['/menu']);
       },
       error: (err) => {
         this.loading = false;
