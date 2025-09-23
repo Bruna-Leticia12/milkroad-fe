@@ -1,0 +1,16 @@
+.login-root {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: #f4f6f8;
+  padding: 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 8px;
+}
+
+.full { width: 100%; margin-bottom: 12px; }

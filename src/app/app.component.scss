@@ -1,0 +1,13 @@
+/* Estilos do componente raiz (AppComponent) */
+:host {
+  display: block;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* estilo básico do container para centralizar conteúdo */
+:host ::ng-deep .center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
