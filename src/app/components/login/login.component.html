@@ -1,25 +1,30 @@
 <div class="login-root">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title>MilkRoad</mat-card-title>
-    </mat-card-header>
+  <div class="login-box">
+    <h1 class="title">MILK ROAD</h1>
+    <p class="subtitle">Bem Vindo</p>
 
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline" class="full">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" type="email" />
-        </mat-form-field>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
+      <div class="input-wrapper">
+        <input
+          type="email"
+          placeholder="E-mail"
+          formControlName="email"
+          class="custom-input"
+        />
+      </div>
 
-        <mat-form-field appearance="outline" class="full">
-          <mat-label>Senha</mat-label>
-          <input matInput formControlName="senha" type="password" />
-        </mat-form-field>
+      <div class="input-wrapper">
+        <input
+          type="password"
+          placeholder="Senha"
+          formControlName="senha"
+          class="custom-input"
+        />
+      </div>
 
-        <button mat-raised-button color="primary" class="full" [disabled]="loading">
-          Entrar
-        </button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      <button (click)="teste()" mat-raised-button color="primary" class="login-btn" [disabled]="loading">
+        Login
+      </button>
+    </form>
+  </div>
 </div>
