@@ -14,12 +14,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MenuComponent } from './components/menu/menu.component';
+import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro-cliente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
-    // adicione aqui novos componentes conforme for criando (Dashboard, ClienteList, etc.)
+    LoginComponent,
+    MenuComponent,
+    CadastroClienteComponent  // <-- garanta que está aqui
+
+
   ],
   imports: [
     BrowserModule,

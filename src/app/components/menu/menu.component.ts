@@ -10,8 +10,14 @@ import { Router } from '@angular/router';
 export class MenuComponent {
   constructor(private router: Router) {}
 
+  // opcional — se quiser usar navegação programática
   navigate(path: string) {
-    console.log(`Clicou em ${path}`);
-    // 🔹 futuramente pode usar this.router.navigate([path]);
+    const url = `/${path}`;
+    console.log('Tentando navegar para', url);
+    this.router.navigateByUrl(url).then(ok => {
+      console.log('Navegação ok?', ok);
+    }).catch(err => {
+      console.error('Erro na navegação:', err);
+    });
   }
 }

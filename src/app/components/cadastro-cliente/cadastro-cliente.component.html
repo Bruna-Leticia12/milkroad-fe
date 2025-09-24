@@ -1,0 +1,20 @@
+<div class="cadastro-root">
+  <h1 class="cadastro-title">Cadastro de Cliente</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="cadastro-form">
+    <input type="text" placeholder="Nome" formControlName="nome" class="custom-input" />
+    <input type="text" placeholder="Celular" formControlName="celular" class="custom-input" />
+    <input type="text" placeholder="Telefone" formControlName="telefone" class="custom-input" />
+    <input type="text" placeholder="Logradouro" formControlName="logradouro" class="custom-input" />
+    <input type="text" placeholder="Número" formControlName="numero" class="custom-input" />
+    <input type="text" placeholder="Bairro" formControlName="bairro" class="custom-input" />
+    <input type="text" placeholder="Cidade" formControlName="cidade" class="custom-input" />
+    <input type="text" placeholder="CEP" formControlName="cep" class="custom-input" />
+    <input type="text" placeholder="E-mail" formControlName="email" class="custom-input" />
+    <input type="password" placeholder="Senha" formControlName="senha" class="custom-input" />
+
+    <button mat-raised-button color="primary" class="cadastro-btn" [disabled]="loading">
+      {{ loading ? 'Cadastrando...' : 'Cadastrar' }}
+    </button>
+  </form>
+</div>
