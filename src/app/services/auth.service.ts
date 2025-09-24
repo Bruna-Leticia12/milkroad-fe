@@ -11,6 +11,8 @@ export class AuthService {
 
   constructor(private api: ApiService) { }
 
+  // Envia request ao backend: POST http://localhost:8080/api/auth/login
+  // Observação: ApiService já concatena baseUrl + path
   login(body: LoginRequest): Observable<LoginResponse> {
     return this.api.post<LoginResponse>('/auth/login', body).pipe(
       tap(resp => {

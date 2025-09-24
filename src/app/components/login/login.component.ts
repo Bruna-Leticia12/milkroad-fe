@@ -36,12 +36,12 @@ export class LoginComponent {
       next: () => {
         this.loading = false;
         this.snack.open('Login efetuado!', 'OK', { duration: 2000 });
-        // redirecionar para dashboard (a implementar)
+        // navegar para menu
         this.router.navigate(['/menu']);
       },
       error: (err) => {
         this.loading = false;
-        console.error(err);
+        console.error('Erro no login:', err);
         this.snack.open('Credenciais inválidas', 'OK', { duration: 3000 });
       }
     });
