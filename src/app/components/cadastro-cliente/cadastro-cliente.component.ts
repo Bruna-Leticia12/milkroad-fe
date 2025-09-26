@@ -30,27 +30,33 @@ export class CadastroClienteComponent {
       cidade: ['', Validators.required],
       cep: ['', Validators.required],
       email: ['', Validators.required],
-      senha: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 
   submit() {
-    if (this.form.invalid) {
-      this.snack.open('Preencha os campos obrigatórios', 'OK', { duration: 2500 });
-      return;
-    }
+  if (this.form.invalid) {
+    this.snack.open('Preencha os campos obrigatórios', 'OK', { duration: 2500 });
+    return;
+  }
 
-    this.loading = true;
+  this.loading = true;
 
-    // Se você tem ApiService e endpoint POST /api/clientes, use-o:
-    // this.api.post('/api/clientes', this.form.value).subscribe( ... )
+  const cliente = {
+    ...this.form.value,
+    perfil: 'CLIENTE' // 🔹 garante que sempre será cliente
+  };
 
-    // Por ora vamos simular:
-    setTimeout(() => {
+  this.api.post('/clientes', cliente).subscribe({
+    next: () => {
       this.loading = false;
       this.snack.open('Cliente cadastrado com sucesso!', 'OK', { duration: 2500 });
-      // opcional: voltar ao menu
       this.router.navigate(['/menu']);
-    }, 900);
+    },
+    error: (err) => {
+      this.loading = false;
+      console.error(err);
+      this.snack.open('Erro ao cadastrar cliente', 'OK', { duration: 2500 });
+      }
+    });
   }
 }
