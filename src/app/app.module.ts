@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
-// Angular Material modules used
+// Angular Material modules
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,12 +23,13 @@ import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro
     AppComponent,
     LoginComponent,
     MenuComponent,
-    CadastroClienteComponent  // <-- garanta que está aqui
-
-
+    CadastroClienteComponent
+    // ⚠️ Removemos ListaClientesComponent e EntregaComponent daqui,
+    // pois agora são standalone e já são carregados pelo router
   ],
   imports: [
     BrowserModule,
+    CommonModule, 
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -41,4 +43,4 @@ import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

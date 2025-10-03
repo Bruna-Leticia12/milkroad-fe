@@ -9,12 +9,11 @@ import { LoginResponse } from '../models/login-response.model';
 })
 export class AuthService {
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {}
 
   // Envia request ao backend: POST http://localhost:8080/api/auth/login
-  // Observação: ApiService já concatena baseUrl + path
   login(body: LoginRequest): Observable<LoginResponse> {
-    return this.api.post<LoginResponse>('/auth/login', body).pipe(
+    return this.api.post<LoginResponse>('/auth/login', body, false).pipe(
       tap(resp => {
         if (resp && resp.token) {
           localStorage.setItem('token', resp.token);

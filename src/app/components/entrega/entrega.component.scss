@@ -1,0 +1,79 @@
+.entregas-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(180deg, #e6f3ff 0%, #ffffff 100%);
+  font-family: 'Roboto', sans-serif;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+.entregas-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2f4a6d;
+  margin-bottom: 25px;
+}
+
+.loading, .empty {
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+}
+
+.entrega-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.entrega-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 🔹 nome à esquerda e botão à direita */
+  gap: 10px;
+}
+
+/* caixa do nome */
+.nome-box {
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid #3a6ea5;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #2f4a6d;
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* botão separado */
+.status-btn {
+  flex: 0 0 auto;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: default;
+  color: #fff;
+  min-width: 60px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-ok {
+  background-color: #28a745; /* verde */
+}
+
+.status-nao {
+  background-color: #dc3545; /* vermelho */
+}

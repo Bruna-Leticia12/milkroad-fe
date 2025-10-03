@@ -1,0 +1,79 @@
+.lista-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(180deg, #e6f3ff 0%, #ffffff 100%);
+  font-family: 'Roboto', sans-serif;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+
+.lista-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #2f4a6d;
+  margin-bottom: 24px;
+}
+
+.lista-container {
+  width: 92%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lista-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 🔹 garante que nome vai à esquerda e botão à direita */
+  gap: 10px;
+}
+
+/* campo com nome */
+.nome-box {
+  flex: 1; /* 🔹 ocupa espaço até antes do botão */
+  padding: 12px 20px;
+  border: 2px solid #3a6ea5;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #2f4a6d;
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* botão ao lado direito */
+.status-btn {
+  flex: 0 0 auto;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: default;
+  color: #ffffff;
+  min-width: 60px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-ok {
+  background: #28a745; /* verde */
+}
+
+.status-nao {
+  background: #dc3545; /* vermelho */
+}
+
+.loading, .empty {
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+}

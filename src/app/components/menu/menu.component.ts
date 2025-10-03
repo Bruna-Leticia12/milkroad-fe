@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class MenuComponent {
   constructor(private router: Router) {}
 
-  // opcional — se quiser usar navegação programática
+  // opcional — navegação programática se precisar no futuro
   navigate(path: string) {
     const url = `/${path}`;
     console.log('Tentando navegar para', url);

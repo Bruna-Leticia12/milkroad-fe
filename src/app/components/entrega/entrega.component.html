@@ -1,0 +1,28 @@
+<div class="entregas-root">
+  <h1 class="entregas-title">Lista de Entregas</h1>
+
+  <div *ngIf="loading" class="loading">Carregando entregas...</div>
+
+  <div *ngIf="!loading && entregas.length === 0" class="empty">
+    Nenhuma entrega encontrada para hoje.
+  </div>
+
+  <div class="entrega-list" *ngIf="!loading && entregas.length > 0">
+    <div *ngFor="let entrega of entregas" class="entrega-item">
+      
+      <!-- Caixa branca só para o nome -->
+      <div class="nome-box">
+        {{ entrega.clienteNome }}
+      </div>
+
+      <!-- Botão de status separado -->
+      <button 
+        class="status-btn" 
+        [ngClass]="getStatusClass(entrega.confirmada)" 
+        type="button" 
+        disabled>
+        {{ getStatusText(entrega.confirmada) }}
+      </button>
+    </div>
+  </div>
+</div>
