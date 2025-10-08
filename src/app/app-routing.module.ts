@@ -21,6 +21,11 @@ const routes: Routes = [
     loadComponent: () => import('./components/entrega/entrega.component')
       .then(m => m.EntregaComponent) 
   },
+  { 
+    path: 'atualizacao-entrega', 
+    loadComponent: () => import('./components/atualizacao-entrega/atualizacao-entrega.component')
+      .then(m => m.AtualizacaoEntregaComponent) 
+  },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }

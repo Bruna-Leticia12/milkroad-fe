@@ -1,0 +1,30 @@
+<div class="atualizacao-root">
+  <h2>Olá, {{ nomeCliente }}!</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Selecione a data</mat-label>
+    <input matInput [matDatepicker]="picker" (dateChange)="onDataChange($event.value)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="acoes">
+    <button 
+      class="btn receber" 
+      [class.ativo]="escolha === 'RECEBER'" 
+      (click)="escolher('RECEBER')">
+      Receber Entrega
+    </button>
+
+    <button 
+      class="btn cancelar" 
+      [class.ativo]="escolha === 'CANCELAR'" 
+      (click)="escolher('CANCELAR')">
+      Cancelar Entrega
+    </button>
+  </div>
+
+  <button class="btn confirmar" (click)="confirmar()">Confirmar</button>
+
+  <p class="mensagem">{{ mensagem }}</p>
+</div>

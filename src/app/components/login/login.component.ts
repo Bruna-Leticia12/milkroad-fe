@@ -32,12 +32,20 @@ export class LoginComponent {
   submit() {
     if (this.form.invalid) return;
     this.loading = true;
-    this.auth.login(this.form.value).subscribe({
-      next: () => {
-        this.loading = false;
-        this.snack.open('Login efetuado!', 'OK', { duration: 2000 });
-        // navegar para menu
-        this.router.navigate(['/menu']);
+
+  this.auth.login(this.form.value).subscribe({ 
+    next: (usuario) => { 
+      this.loading = false; 
+      this.snack.open('Login efetuado!', 'OK', { duration: 2000 });
+
+        // Redireciona conforme perfil
+      if (usuario.perfil === 'CLIENTE') { 
+        localStorage.setItem('clienteId', usuario.id.toString()); 
+        localStorage.setItem('nomeCliente', usuario.nome); 
+        this.router.navigateByUrl('/atualizacao-entrega'); 
+      } else { 
+        this.router.navigateByUrl('/menu'); // admin
+        }
       },
       error: (err) => {
         this.loading = false;
