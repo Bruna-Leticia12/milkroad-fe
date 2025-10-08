@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
-// Angular Material modules
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { MenuComponent } from './components/menu/menu.component';
 import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro-cliente.component';
 
@@ -24,12 +26,10 @@ import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro
     LoginComponent,
     MenuComponent,
     CadastroClienteComponent
-    // ⚠️ Removemos ListaClientesComponent e EntregaComponent daqui,
-    // pois agora são standalone e já são carregados pelo router
   ],
   imports: [
     BrowserModule,
-    CommonModule, 
+    CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -38,7 +38,9 @@ import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,25 +1,25 @@
 <div class="atualizacao-root">
-  <h2>Olá, {{ nomeCliente }}!</h2>
+  <h2 class="titulo">Olá, {{ nomeCliente }}!</h2>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Selecione a data</mat-label>
-    <input matInput [matDatepicker]="picker" (dateChange)="onDataChange($event.value)">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <div class="data-container">
+    <label class="label-data">Selecione a data</label>
+    <mat-calendar [(selected)]="dataSelecionada" (selectedChange)="onDataChange($event)"></mat-calendar>
+  </div>
 
   <div class="acoes">
-    <button 
-      class="btn receber" 
-      [class.ativo]="escolha === 'RECEBER'" 
-      (click)="escolher('RECEBER')">
+    <button
+      class="btn receber"
+      [class.ativo]="escolha === 'RECEBER'"
+      (click)="escolher('RECEBER')"
+    >
       Receber Entrega
     </button>
 
-    <button 
-      class="btn cancelar" 
-      [class.ativo]="escolha === 'CANCELAR'" 
-      (click)="escolher('CANCELAR')">
+    <button
+      class="btn cancelar"
+      [class.ativo]="escolha === 'CANCELAR'"
+      (click)="escolher('CANCELAR')"
+    >
       Cancelar Entrega
     </button>
   </div>

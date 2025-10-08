@@ -1,59 +1,160 @@
 .atualizacao-root {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, #e6f3ff 0%, #ffffff 100%);
   font-family: 'Roboto', sans-serif;
+  padding-top: 60px;
+}
 
-  h2 {
-    margin-bottom: 20px;
-    color: #2f4a6d;
+.titulo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #2f4a6d;
+  margin-bottom: 30px;
+}
+
+.data-container {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+
+  .label-data {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2f4a6d; /* mesma cor do título "Olá..." */
+    margin-bottom: 12px;
+    display: block;
+    text-align: center;
   }
 
-  .acoes {
+  /* Personaliza o calendário */
+  ::ng-deep .mat-calendar {
+    width: 300px;
+    border-radius: 16px;
+    background-color: #f3f7fb;
+  }
+
+  /* CABEÇALHO */
+  ::ng-deep .mat-calendar-header {
+    background-color: #e6f0fc;
+    border-radius: 16px 16px 0 0; /* bordas arredondadas no topo */
+    color: #2f4a6d;
     display: flex;
-    gap: 12px;
-    margin: 20px 0;
+    align-items: center;
+    justify-content: space-between; /* ícones nas extremidades */
+    padding: 6px 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 
-    .btn {
-      padding: 10px 20px;
-      border-radius: 24px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      min-width: 140px;
-      transition: all 0.3s;
+  /* Centraliza o nome do mês e deixa em português */
+  ::ng-deep .mat-calendar-period-button {
+    flex: 1;
+    text-align: center;
+    pointer-events: none;
+    color: #2f4a6d !important;
+    font-size: 16px;
+    font-weight: bold;
+  }
 
-      &.receber {
-        background: #cfcfcf;
-        color: #fff;
-      }
-      &.receber.ativo {
-        background: #28a745;
-      }
+  /* Ícones de navegação */
+  ::ng-deep .mat-calendar-arrow {
+    color: #2f4a6d !important;
+  }
 
-      &.cancelar {
-        background: #cfcfcf;
-        color: #fff;
-      }
-      &.cancelar.ativo {
-        background: #dc3545;
-      }
+  /* Remove linha redundante */
+  ::ng-deep .mat-calendar-body-label {
+    display: none !important;
+  }
+
+  /* Dias da semana e dias do mês */
+  ::ng-deep .mat-calendar-table {
+    text-align: center;
+  }
+
+  ::ng-deep .mat-calendar-table-header th {
+    color: #2f4a6d;
+    font-weight: bold;
+  }
+
+  ::ng-deep .mat-calendar-body-cell-content {
+    color: #2f4a6d !important;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  ::ng-deep .mat-calendar-body-cell-content:hover {
+    background-color: #d7e7f9 !important;
+  }
+
+  ::ng-deep .mat-calendar-body-selected {
+    background-color: #3a6ea5 !important;
+    color: #ffffff !important;
+  }
+
+  /* Bordas arredondadas no rodapé */
+  ::ng-deep .mat-calendar-content {
+    border-radius: 0 0 16px 16px;
+  }
+}
+
+.acoes {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+
+  .btn {
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 150px;
+    color: #ffffff;
+
+    &.receber {
+      background: #cfcfcf;
+    }
+    &.receber.ativo {
+      background: #28a745;
+    }
+
+    &.cancelar {
+      background: #cfcfcf;
+    }
+    &.cancelar.ativo {
+      background: #dc3545;
     }
   }
+}
 
-  .btn.confirmar {
-    background: #2f4a6d;
-    color: #fff;
-    padding: 10px 24px;
-    border-radius: 24px;
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
+.btn.confirmar {
+  background: #2f4a6d;
+  color: #ffffff;
+  padding: 10px 40px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  transition: background 0.3s, transform 0.2s;
 
-  .mensagem {
-    font-size: 14px;
-    color: #333;
-    margin-top: 8px;
+  &:hover {
+    background: #3a6ea5;
+    transform: scale(1.03);
   }
+}
+
+.mensagem {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2f4a6d;
+  margin-top: 16px;
+  text-align: center;
 }
