@@ -8,7 +8,15 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class MenuComponent {
-  constructor(private router: Router) {}
+  perfil = '';
+
+  constructor(private router: Router) {
+    this.perfil = localStorage.getItem('perfil') || '';
+  }
+
+  voltar() {
+    this.router.navigate(['/login']);
+  }
 
   // opcional — navegação programática se precisar no futuro
   navigate(path: string) {

@@ -1,4 +1,7 @@
 <div class="cadastro-root">
+  <!-- 🔙 Botão voltar funcionando -->
+  <button class="btn-voltar" (click)="voltar()">←</button>
+
   <h1 class="cadastro-title">Cadastro de Cliente</h1>
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="cadastro-form">

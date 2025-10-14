@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ApiService } from '../../services/api.service'; // se tiver esta service
+import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,12 +13,13 @@ import { Router } from '@angular/router';
 export class CadastroClienteComponent {
   form: FormGroup;
   loading = false;
+  perfil: string | null = null; // ✅ declarada
 
   constructor(
     private fb: FormBuilder,
     private snack: MatSnackBar,
     private router: Router,
-    private api: ApiService // se não tiver, remova/ajuste
+    private api: ApiService
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
@@ -31,32 +32,44 @@ export class CadastroClienteComponent {
       cep: ['', Validators.required],
       email: ['', Validators.required],
     });
+
+    this.perfil = localStorage.getItem('perfil');
   }
 
   submit() {
-  if (this.form.invalid) {
-    this.snack.open('Preencha os campos obrigatórios', 'OK', { duration: 2500 });
-    return;
-  }
+    if (this.form.invalid) {
+      this.snack.open('Preencha os campos obrigatórios', 'OK', { duration: 2500 });
+      return;
+    }
 
-  this.loading = true;
+    this.loading = true;
+    const cliente = { ...this.form.value, perfil: 'CLIENTE' };
 
-  const cliente = {
-    ...this.form.value,
-    perfil: 'CLIENTE' // 🔹 garante que sempre será cliente
-  };
-
-  this.api.post('/clientes', cliente).subscribe({
-    next: () => {
-      this.loading = false;
-      this.snack.open('Cliente cadastrado com sucesso!', 'OK', { duration: 2500 });
-      this.router.navigate(['/menu']);
-    },
-    error: (err) => {
-      this.loading = false;
-      console.error(err);
-      this.snack.open('Erro ao cadastrar cliente', 'OK', { duration: 2500 });
+    this.api.post('/clientes', cliente).subscribe({
+      next: () => {
+        this.loading = false;
+        this.snack.open('Cliente cadastrado com sucesso!', 'OK', { duration: 2500 });
+        this.router.navigate(['/menu']);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error(err);
+        this.snack.open('Erro ao cadastrar cliente', 'OK', { duration: 2500 });
       }
     });
+  }
+
+  voltarMenu() {
+    const perfil = localStorage.getItem('perfil');
+    if (perfil === 'ADMIN') {
+      this.router.navigate(['/menu']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  // ✅ Novo método para funcionar com o HTML atual
+  voltar() {
+    this.voltarMenu();
   }
 }

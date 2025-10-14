@@ -9,6 +9,22 @@
   padding-top: 130px;
 }
 
+.btn-voltar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: none;
+  border: none;
+  font-size: 34px;
+  color: #2f4a6d;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.btn-voltar:hover {
+  transform: scale(1.1);
+}
+
 .menu-title {
   font-size: 40px;
   font-weight: bold;

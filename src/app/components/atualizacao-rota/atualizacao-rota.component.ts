@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { GoogleMapsLoaderService } from '../../services/google-maps-loader.service';
+import { Router } from '@angular/router';
 
 interface RouteStopDTO {
   entregaId: number;
@@ -37,7 +38,11 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
   directionsService!: google.maps.DirectionsService;
   directionsRenderer!: google.maps.DirectionsRenderer;
 
-  constructor(private api: ApiService, private mapsLoader: GoogleMapsLoaderService) {}
+  constructor(
+    private api: ApiService,
+    private mapsLoader: GoogleMapsLoaderService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.carregarRota();
@@ -49,6 +54,15 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
     } catch (err) {
       console.error('Erro ao carregar Google Maps API:', err);
       this.loading = false;
+    }
+  }
+
+  voltar(): void {
+    const perfil = localStorage.getItem('perfil');
+    if (perfil === 'ADMIN') {
+      this.router.navigate(['/menu']);
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 
@@ -67,7 +81,6 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
         this.rota = data;
         this.loading = false;
 
-        // Aguarda o template renderizar o div do mapa
         setTimeout(() => {
           if (this.rota && this.rota.stops.length > 0) {
             this.initMap();
@@ -82,10 +95,7 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
   }
 
   private initMap(): void {
-    if (!this.rota || this.rota.stops.length === 0 || !this.mapElement) {
-      console.warn('Div do mapa ainda não está disponível.');
-      return;
-    }
+    if (!this.rota || this.rota.stops.length === 0 || !this.mapElement) return;
 
     const mapDiv = this.mapElement.nativeElement as HTMLElement;
     const center = {

@@ -1,5 +1,43 @@
 <div class="atualizacao-root">
-  <h2 class="titulo">Olá, {{ nomeCliente }}!</h2>
+  <button class="btn-voltar" (click)="voltar()">←</button>
+
+  <h2 class="titulo" *ngIf="!isAdmin">Olá, {{ nomeCliente }}!</h2>
+  <h2 class="titulo" *ngIf="isAdmin">Cancelar Entrega</h2>
+
+  <!-- Campo de busca ADMIN -->
+  <div *ngIf="isAdmin" class="admin-controls">
+    <div class="search-wrapper">
+      <input
+        id="searchCliente"
+        class="custom-search"
+        type="text"
+        placeholder="Digite o nome do cliente..."
+        [(ngModel)]="filtroCliente"
+        (input)="mostrarLista = true"
+      />
+      <button class="clear-btn" *ngIf="filtroCliente" (click)="limparBusca()">×</button>
+    </div>
+
+    <!-- Lista aparece apenas após digitar -->
+    <div class="lista-clientes" *ngIf="mostrarLista && clientesFiltrados.length > 0">
+      <button
+        class="cliente-item"
+        *ngFor="let c of clientesFiltrados"
+        (click)="selecionarCliente(c)"
+        [class.selecionado]="c.id === clienteSelecionadoId"
+      >
+        {{ c.nome }}
+      </button>
+    </div>
+
+    <div class="nenhum-cliente" *ngIf="filtroCliente.length >= 2 && clientesFiltrados.length === 0">
+      Nenhum cliente encontrado.
+    </div>
+  </div>
+
+  <div class="subtitle" *ngIf="isAdmin && nomeCliente">
+    Cliente selecionado: <strong>{{ nomeCliente }}</strong>
+  </div>
 
   <div class="data-container">
     <label class="label-data">Selecione a data</label>
@@ -19,12 +57,12 @@
       class="btn cancelar"
       [class.ativo]="escolha === 'CANCELAR'"
       (click)="escolher('CANCELAR')"
+      [disabled]="!entregaSelecionada"
     >
       Cancelar Entrega
     </button>
   </div>
 
   <button class="btn confirmar" (click)="confirmar()">Confirmar</button>
-
   <p class="mensagem">{{ mensagem }}</p>
 </div>
