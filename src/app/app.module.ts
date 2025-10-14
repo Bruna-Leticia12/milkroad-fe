@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro-cliente.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,12 @@ import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [{ 
+    provide: HTTP_INTERCEPTORS, 
+    useClass: AuthInterceptor, 
+    multi: true,
+   },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

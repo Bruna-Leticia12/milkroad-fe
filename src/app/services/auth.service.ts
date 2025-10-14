@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable, tap, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ApiService } from './api.service';
-import { Observable, tap } from 'rxjs';
 import { LoginRequest } from '../models/login-request.model';
 import { LoginResponse } from '../models/login-response.model';
 
@@ -11,40 +12,47 @@ export class AuthService {
 
   constructor(private api: ApiService) {}
 
-  // Envia request ao backend: POST http://localhost:8080/api/auth/login
   login(body: LoginRequest): Observable<LoginResponse> {
-    // auth = false -> não envia token (login)
     return this.api.post<LoginResponse>('/auth/login', body, false).pipe(
       tap(resp => {
         if (resp && resp.token) {
           localStorage.setItem('token', resp.token);
-          // converte id para string de forma segura
+
           if (resp.id !== undefined && resp.id !== null) {
             localStorage.setItem('id', String(resp.id));
           } else {
             localStorage.removeItem('id');
           }
+
           if (resp.nome) {
             localStorage.setItem('nome', resp.nome);
           } else {
             localStorage.removeItem('nome');
           }
+
           if (resp.perfil) {
             localStorage.setItem('perfil', resp.perfil);
           } else {
             localStorage.removeItem('perfil');
           }
+
           if (resp.email) {
             localStorage.setItem('email', resp.email);
           } else {
             localStorage.removeItem('email');
           }
+        } else {
+          console.error('⚠️ Resposta de login inválida:', resp);
         }
+      }),
+      catchError(err => {
+        console.error('❌ Erro ao fazer login:', err);
+        return throwError(() => err);
       })
     );
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('nome');
@@ -53,6 +61,15 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    return !!token && token.trim() !== '';
+  }
+
+  getUserRole(): string | null {
+    return localStorage.getItem('perfil');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 }
