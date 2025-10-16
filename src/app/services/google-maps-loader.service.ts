@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class GoogleMapsLoaderService {
   private apiLoaded = false;
 
@@ -17,10 +15,12 @@ export class GoogleMapsLoaderService {
       script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
       script.async = true;
       script.defer = true;
+
       script.onload = () => {
         this.apiLoaded = true;
         resolve();
       };
+
       script.onerror = (err) => reject(err);
 
       document.head.appendChild(script);

@@ -5,11 +5,11 @@ import { ApiService } from './api.service';
 import { LoginRequest } from '../models/login-request.model';
 import { LoginResponse } from '../models/login-response.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-
+  getUser() {
+    throw new Error('Method not implemented.');
+  }
   constructor(private api: ApiService) {}
 
   login(body: LoginRequest): Observable<LoginResponse> {

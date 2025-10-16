@@ -1,26 +1,23 @@
-<div class="rota-root" *ngIf="!loading; else carregando">
-  <button class="btn-voltar" (click)="voltar()">←</button>
+<div class="rota-root" *ngIf="!loading; else carregando"> 
+  <button class="btn-voltar" (click)="voltar()">←</button> 
+  
+  <h2 class="titulo">Rota de Entregas</h2> 
+  
+  <div *ngIf="rota && rota.stops.length > 0" class="map-container"> 
+    <div #mapContainer id="map"></div> 
+  </div> 
+  
+  <div *ngIf="rota && rota.stops.length > 0" class="info-rota"> 
+    <p><strong>Data:</strong> {{ rota.date }}</p> 
+    <p><strong>Total de entregas:</strong> {{ rota.stops.length }}</p> 
+    <p> <strong>Distância total:</strong> {{ (rota.totalDistanceMeters / 1000) | number : '1.1-1' }} km </p> 
+  </div> 
+  
+  <div *ngIf="rota && rota.stops.length === 0" class="mensagem"> 
+    Nenhuma entrega confirmada para hoje. 
+  </div> 
+</div> 
 
-  <h2 class="titulo">Rota de Entregas</h2>
-
-  <div *ngIf="rota && rota.stops.length > 0" class="map-container">
-    <div #mapContainer id="map"></div>
-  </div>
-
-  <div *ngIf="rota && rota.stops.length > 0" class="info-rota">
-    <p><strong>Data:</strong> {{ rota.date }}</p>
-    <p><strong>Total de entregas:</strong> {{ rota.stops.length }}</p>
-    <p>
-      <strong>Distância total:</strong>
-      {{ (rota.totalDistanceMeters / 1000) | number : '1.1-1' }} km
-    </p>
-  </div>
-
-  <div *ngIf="rota && rota.stops.length === 0" class="mensagem">
-    Nenhuma entrega confirmada para hoje.
-  </div>
-</div>
-
-<ng-template #carregando>
-  <div class="mensagem">Carregando rota...</div>
+<ng-template #carregando> 
+  <div class="mensagem">Carregando rota...</div> 
 </ng-template>

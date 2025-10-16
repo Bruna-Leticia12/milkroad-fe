@@ -108,7 +108,7 @@
   }
 }
 
-/* Calendário */
+/* 📅 Calendário corrigido */
 .data-container {
   background: #ffffff;
   border-radius: 20px;
@@ -129,6 +129,7 @@
     width: 320px;
     border-radius: 12px;
     background-color: #f7fbff;
+    text-align: center;
   }
 
   ::ng-deep .mat-calendar-header {
@@ -143,27 +144,37 @@
     text-transform: uppercase;
   }
 
-  ::ng-deep .mat-calendar-period-button {
-    flex: 1;
+  ::ng-deep .mat-calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* 🔧 mantém colunas alinhadas */
+  }
+
+  ::ng-deep .mat-calendar-table-header th {
+    color: #2f4a6d;
+    font-weight: bold;
     text-align: center;
-    pointer-events: none;
-    color: #2f4a6d !important;
-    font-size: 14px;
-    font-weight: 700;
+    width: 14.28%; /* 🔧 garante espaçamento igual */
+    padding: 6px 0;
   }
 
   ::ng-deep .mat-calendar-body-label {
     display: none !important;
   }
 
-  ::ng-deep .mat-calendar-table-header th {
-    color: #2f4a6d;
-    font-weight: bold;
+  ::ng-deep .mat-calendar-body-cell {
+    text-align: center;
+    padding: 0;
   }
 
   ::ng-deep .mat-calendar-body-cell-content {
     color: #2f4a6d !important;
     border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    margin: auto;
+    display: inline-block;
   }
 
   ::ng-deep .mat-calendar-body-cell-content:hover {
@@ -180,7 +191,7 @@
   }
 }
 
-/* Ações e botões */
+/* Botões */
 .acoes {
   display: flex;
   gap: 12px;
@@ -197,10 +208,22 @@
     color: #ffffff;
     min-width: 140px;
   }
-  .receber { background: #cfcfcf; color: #fff; }
-  .receber.ativo { background: #28a745; }
-  .cancelar { background: #cfcfcf; color: #fff; }
-  .cancelar.ativo { background: #dc3545; }
+
+  .receber {
+    background: #cfcfcf;
+    color: #fff;
+  }
+  .receber.ativo {
+    background: #28a745;
+  }
+
+  .cancelar {
+    background: #cfcfcf;
+    color: #fff;
+  }
+  .cancelar.ativo {
+    background: #dc3545;
+  }
 }
 
 .btn.confirmar {
