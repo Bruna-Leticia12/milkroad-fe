@@ -1,15 +1,15 @@
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, DateAdapter } from '@angular/material/core';
+import localePt from '@angular/common/locales/pt';
 import { ApiService } from '../../services/api.service';
 import { EntregaDTO } from '../../models/entrega.model';
-import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
+
 registerLocaleData(localePt);
 
 interface ClienteResponseDTO {
@@ -50,7 +50,7 @@ export class AtualizacaoEntregaComponent implements OnInit {
   mensagem: string = '';
 
   isAdmin = false;
-  perfil: string | null = null; // 
+  perfil: string | null = null;
   clientes: ClienteResponseDTO[] = [];
   filtroCliente = '';
   clienteSelecionadoId?: number;
@@ -58,10 +58,12 @@ export class AtualizacaoEntregaComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    private adapter: DateAdapter<any>,
+    private adapter: DateAdapter<Date>,
     private router: Router
   ) {
+    // ✅ Define o idioma e início da semana (segunda-feira)
     this.adapter.setLocale('pt-BR');
+    this.adapter.getFirstDayOfWeek = () => 1;
   }
 
   ngOnInit(): void {
@@ -81,18 +83,17 @@ export class AtualizacaoEntregaComponent implements OnInit {
   }
 
   voltarMenu() {
-      const perfil = localStorage.getItem('perfil');
-      if (perfil === 'ADMIN') {
-        this.router.navigate(['/menu']);
-      } else {
-        this.router.navigate(['/login']);
-      }
+    const perfil = localStorage.getItem('perfil');
+    if (perfil === 'ADMIN') {
+      this.router.navigate(['/menu']);
+    } else {
+      this.router.navigate(['/login']);
     }
+  }
 
   voltar() {
     this.voltarMenu();
   }
-  
 
   carregarClientes() {
     this.api.get<ClienteResponseDTO[]>('/clientes').subscribe({

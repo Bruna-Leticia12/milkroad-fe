@@ -17,6 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MenuComponent } from './components/menu/menu.component';
 import { CadastroClienteComponent } from './components/cadastro-cliente/cadastro-cliente.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
