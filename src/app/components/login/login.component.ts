@@ -25,9 +25,6 @@ export class LoginComponent {
       senha: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
-  teste(){
-    console.log("Voce clicou")
-  }
 
   submit() {
     if (this.form.invalid) return;

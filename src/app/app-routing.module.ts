@@ -15,15 +15,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['ADMIN'] }
   },
-  // ✅ Demais rotas autenticadas
-  {
-    path: 'lista-clientes',
-    loadComponent: () =>
-      import('./components/lista-clientes/lista-clientes.component').then(
-        m => m.ListaClientesComponent
-      ),
-    canActivate: [AuthGuard],
-  },
   {
     path: 'entregas',
     loadComponent: () =>
