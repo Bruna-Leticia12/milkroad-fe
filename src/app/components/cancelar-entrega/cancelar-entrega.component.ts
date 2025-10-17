@@ -37,11 +37,11 @@ interface ClienteResponseDTO {
     MatInputModule,
     MatNativeDateModule
   ],
-  templateUrl: './atualizacao-entrega.component.html',
-  styleUrls: ['./atualizacao-entrega.component.scss'],
+  templateUrl: './cancelar-entrega.component.html',
+  styleUrls: ['./cancelar-entrega.component.scss'],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }]
 })
-export class AtualizacaoEntregaComponent implements OnInit {
+export class CancelarEntregaComponent implements OnInit {
   nomeCliente: string = '';
   entregas: EntregaDTO[] = [];
   entregaSelecionada?: EntregaDTO;

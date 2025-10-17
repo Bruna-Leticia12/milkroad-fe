@@ -26,8 +26,8 @@ const routes: Routes = [
   {
     path: 'atualizacao-entrega',
     loadComponent: () =>
-      import('./components/atualizacao-entrega/atualizacao-entrega.component').then(
-        m => m.AtualizacaoEntregaComponent
+      import('./components/cancelar-entrega/cancelar-entrega.component').then(
+        m => m.CancelarEntregaComponent
       ),
     canActivate: [AuthGuard],
   },
