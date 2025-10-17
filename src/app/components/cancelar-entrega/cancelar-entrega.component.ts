@@ -27,7 +27,7 @@ interface ClienteResponseDTO {
 }
 
 @Component({
-  selector: 'app-atualizacao-entrega',
+  selector: 'app-cancelar-entrega',
   standalone: true,
   imports: [
     CommonModule,
@@ -41,7 +41,7 @@ interface ClienteResponseDTO {
   styleUrls: ['./cancelar-entrega.component.scss'],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }]
 })
-export class CancelarEntregaComponent implements OnInit {
+export class CancelarListaClienteComponent implements OnInit {
   nomeCliente: string = '';
   entregas: EntregaDTO[] = [];
   entregaSelecionada?: EntregaDTO;

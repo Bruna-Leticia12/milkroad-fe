@@ -16,18 +16,18 @@ const routes: Routes = [
     data: { roles: ['ADMIN'] }
   },
   {
-    path: 'entregas',
+    path: 'lista-cliente',
     loadComponent: () =>
-      import('./components/entrega/entrega.component').then(
-        m => m.EntregaComponent
+      import('./components/lista-cliente/lista-cliente.component').then(
+        m => m.ListaClienteComponent
       ),
     canActivate: [AuthGuard],
   },
   {
-    path: 'atualizacao-entrega',
+    path: 'cancelar-entrega',
     loadComponent: () =>
       import('./components/cancelar-entrega/cancelar-entrega.component').then(
-        m => m.CancelarEntregaComponent
+        m => m.CancelarListaClienteComponent
       ),
     canActivate: [AuthGuard],
   },

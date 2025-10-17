@@ -5,13 +5,13 @@ import { EntregaDTO } from '../../models/entrega.model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-entrega',
+  selector: 'app-lista-cliente',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './entrega.component.html',
-  styleUrls: ['./entrega.component.scss']
+  templateUrl: './lista-cliente.component.html',
+  styleUrls: ['./lista-cliente.component.scss']
 })
-export class EntregaComponent implements OnInit {
+export class ListaClienteComponent implements OnInit {
   entregas: EntregaDTO[] = [];
   loading = true;
   perfil: string | null = null; // ✅ declarada

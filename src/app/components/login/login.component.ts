@@ -39,7 +39,7 @@ export class LoginComponent {
       if (usuario.perfil === 'CLIENTE') { 
         localStorage.setItem('clienteId', usuario.id.toString()); 
         localStorage.setItem('nomeCliente', usuario.nome); 
-        this.router.navigateByUrl('/atualizacao-entrega'); 
+        this.router.navigateByUrl('/cancelar-entrega'); 
       } else { 
         this.router.navigateByUrl('/menu'); // admin
         }
