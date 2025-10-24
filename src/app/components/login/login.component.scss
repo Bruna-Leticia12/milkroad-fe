@@ -15,7 +15,7 @@
 }
 
 .title {
-  font-size: 50px;
+  font-size: 30px;
   font-weight: bold;
   color: #2f4a6d;
   margin-bottom: 150px;
@@ -59,6 +59,15 @@
   font-weight: bold;
   color: #ffffff !important; /* texto branco */
   width: 60%; /* 🔹 menor que os inputs */
-  margin: 80px auto; /* 🔹 centraliza */
+  margin: 10px auto; /* 🔹 centraliza */
   display: block;
+}
+
+.logo-image {
+  width: 162px;
+  height: 228px;
+}
+
+.image-container {
+
 }

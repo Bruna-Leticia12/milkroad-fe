@@ -1,6 +1,11 @@
 <div class="login-root">
-  <div class="login-box">
-    <h1 class="title">MILK ROAD</h1>
+  <div class="login-box"> 
+    <img
+      src="assets/images/logo-milkroad.png"
+      class="logo-image"
+      (error)="onImageError($event)"
+    />     
+    
     <p class="subtitle">Bem Vindo</p>
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
@@ -22,7 +27,12 @@
         />
       </div>
 
-      <button mat-raised-button color="primary" class="login-btn" [disabled]="loading">
+      <button
+        mat-raised-button
+        color="primary"
+        class="login-btn"
+        [disabled]="loading"
+      >
         Login
       </button>
     </form>
