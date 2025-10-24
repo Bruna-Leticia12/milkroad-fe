@@ -61,7 +61,6 @@ export class CancelarListaClienteComponent implements OnInit {
     private adapter: DateAdapter<Date>,
     private router: Router
   ) {
-    // ✅ Define o idioma e início da semana (segunda-feira)
     this.adapter.setLocale('pt-BR');
     this.adapter.getFirstDayOfWeek = () => 1;
   }
@@ -77,6 +76,7 @@ export class CancelarListaClienteComponent implements OnInit {
       this.nomeCliente = localNome;
       const clienteId = localStorage.getItem('clienteId') || localStorage.getItem('id');
       if (clienteId) {
+        this.clienteSelecionadoId = Number(clienteId);
         this.buscarEntregasPorClienteId(Number(clienteId));
       }
     }
@@ -123,10 +123,7 @@ export class CancelarListaClienteComponent implements OnInit {
     this.nomeCliente = cliente.nome;
     this.filtroCliente = cliente.nome;
     this.mostrarLista = false;
-    this.entregas = [];
-    this.entregaSelecionada = undefined;
-    this.dataSelecionada = new Date();
-    this.mensagem = '';
+    this.resetarTela(false);
     this.buscarEntregasPorClienteId(cliente.id);
   }
 
@@ -172,7 +169,7 @@ export class CancelarListaClienteComponent implements OnInit {
         .subscribe({
           next: () => {
             this.mensagem = 'Entrega cancelada com sucesso!';
-            this.resetarTela();
+            this.atualizarLista();
           },
           error: (err) => {
             console.error('Erro ao cancelar entrega', err);
@@ -182,18 +179,27 @@ export class CancelarListaClienteComponent implements OnInit {
         });
     } else {
       this.mensagem = 'Entrega confirmada com sucesso!';
-      this.resetarTela();
+      this.atualizarLista();
     }
   }
 
-  private resetarTela() {
+  /** ✅ Atualiza entregas da tela sem pedir novo login */
+  private atualizarLista() {
+    const clienteId = Number(localStorage.getItem('clienteId') || this.clienteSelecionadoId);
+    if (clienteId) {
+      this.buscarEntregasPorClienteId(clienteId);
+    }
+    this.resetarTela();
+  }
+
+  /** ✅ Mantém cliente selecionado e permite novo cancelamento */
+  private resetarTela(resetCliente: boolean = true) {
     setTimeout(() => {
       this.mensagem = '';
-      this.entregas = [];
       this.entregaSelecionada = undefined;
       this.dataSelecionada = new Date();
       this.escolha = 'RECEBER';
-      if (this.isAdmin) {
+      if (this.isAdmin && resetCliente) {
         this.filtroCliente = '';
         this.nomeCliente = '';
         this.clienteSelecionadoId = undefined;
