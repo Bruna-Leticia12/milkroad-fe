@@ -16,9 +16,9 @@ const routes: Routes = [
     data: { roles: ['ADMIN'] }
   },
   {
-    path: 'lista-cliente',
+    path: 'lista-entrega',
     loadComponent: () =>
-      import('./components/lista-cliente/lista-cliente.component').then(
+      import('./components/lista-entrega/lista-entrega.component').then(
         m => m.ListaClienteComponent
       ),
     canActivate: [AuthGuard],

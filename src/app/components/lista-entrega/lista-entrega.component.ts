@@ -5,11 +5,11 @@ import { EntregaDTO } from '../../models/entrega.model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-lista-cliente',
+  selector: 'app-lista-entrega',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './lista-cliente.component.html',
-  styleUrls: ['./lista-cliente.component.scss']
+  templateUrl: './lista-entrega.component.html',
+  styleUrls: ['./lista-entrega.component.scss']
 })
 export class ListaClienteComponent implements OnInit {
   entregas: EntregaDTO[] = [];
