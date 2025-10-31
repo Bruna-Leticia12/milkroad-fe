@@ -1,0 +1,99 @@
+<div class="clientes-root">
+  <button class="btn-voltar" (click)="voltar()">←</button>
+
+  <h1 class="clientes-title">Lista de Clientes</h1>
+
+  <div class="filtros">
+    <mat-form-field appearance="outline" class="filtro-status">
+      <mat-label>Status</mat-label>
+      <mat-select [(value)]="filtroStatus" (selectionChange)="aplicarFiltro()">
+        <mat-option value="ATIVOS">Ativos</mat-option>
+        <mat-option value="INATIVOS">Inativos</mat-option>
+        <mat-option value="TODOS">Todos</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="busca">
+      <mat-label>Buscar Cliente</mat-label>
+      <input matInput [(ngModel)]="termoBusca" (keyup.enter)="buscarPorNome()" />
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="buscarPorNome()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Carregando clientes...</div>
+  <div *ngIf="!loading && clientesFiltrados.length === 0" class="empty">
+    Nenhum cliente encontrado.
+  </div>
+
+  <div class="cliente-list" *ngIf="!loading && clientesFiltrados.length > 0">
+    <div *ngFor="let c of clientesFiltrados" class="cliente-item">
+      <div class="nome-box" (click)="selecionarCliente(c)">
+        {{ c.nome }}
+      </div>
+
+      <button
+        class="status-btn"
+        [ngClass]="getStatusClass(c.ativo)"
+        (click)="alternarStatus(c)"
+        type="button">
+        {{ getStatusText(c.ativo) }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="clienteSelecionado" class="form-edicao">
+    <h3>Atualizar Dados</h3>
+    <form [formGroup]="formEdicao">
+      <div class="grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input matInput formControlName="telefone" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Logradouro</mat-label>
+          <input matInput formControlName="logradouro" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput formControlName="numero" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Bairro</mat-label>
+          <input matInput formControlName="bairro" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Cidade</mat-label>
+          <input matInput formControlName="cidade" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput formControlName="cep" />
+        </mat-form-field>
+
+        <!-- Novo campo status -->
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="ativo">
+            <mat-option [value]="true">Ativo</mat-option>
+            <mat-option [value]="false">Inativo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button color="primary" (click)="salvarAlteracoes()">Salvar Alterações</button>
+    </form>
+  </div>
+</div>

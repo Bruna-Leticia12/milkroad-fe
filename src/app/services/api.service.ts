@@ -1,3 +1,4 @@
+// src/app/services/api.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
@@ -9,25 +10,14 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   private getAuthHeaders(auth: boolean = true) {
-    if (!auth) {
-      return {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-      };
-    }
-
+    const headersConfig: any = { 'Content-Type': 'application/json' };
     const token = localStorage.getItem('token');
-    if (token) {
-      return {
-        headers: new HttpHeaders({
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        })
-      };
+
+    if (auth && token) {
+      headersConfig['Authorization'] = `Bearer ${token}`;
     }
 
-    return {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
+    return { headers: new HttpHeaders(headersConfig) };
   }
 
   post<T>(path: string, body: any, auth: boolean = true) {
@@ -40,5 +30,9 @@ export class ApiService {
 
   put<T>(path: string, body: any, auth: boolean = true) {
     return this.http.put<T>(`${this.baseUrl}${path}`, body, this.getAuthHeaders(auth));
+  }
+
+  patch<T>(path: string, body: any, auth: boolean = true) {
+    return this.http.patch<T>(`${this.baseUrl}${path}`, body, this.getAuthHeaders(auth));
   }
 }

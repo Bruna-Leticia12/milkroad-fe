@@ -28,4 +28,7 @@ export class MenuComponent {
       console.error('Erro na navegação:', err);
     });
   }
+  irParaListaClientes() {
+  this.router.navigate(['/lista-cliente']);
+  }
 }

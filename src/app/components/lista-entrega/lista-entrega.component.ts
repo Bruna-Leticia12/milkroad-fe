@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ListaClienteComponent implements OnInit {
   entregas: EntregaDTO[] = [];
   loading = true;
-  perfil: string | null = null; // ✅ declarada
+  perfil: string | null = null;
 
   constructor(
     private api: ApiService,
@@ -25,7 +25,10 @@ export class ListaClienteComponent implements OnInit {
     this.perfil = localStorage.getItem('perfil');
     this.api.get<EntregaDTO[]>('/entregas/hoje').subscribe({
       next: (data) => {
-        this.entregas = data;
+        // ✅ Ordenar alfabeticamente pelo nome do cliente
+        this.entregas = data.sort((a, b) =>
+          a.clienteNome.localeCompare(b.clienteNome, 'pt-BR', { sensitivity: 'base' })
+        );
         this.loading = false;
       },
       error: (err) => {
@@ -44,7 +47,6 @@ export class ListaClienteComponent implements OnInit {
     }
   }
 
-  // ✅ Novo método para funcionar com o HTML atual
   voltar() {
     this.voltarMenu();
   }

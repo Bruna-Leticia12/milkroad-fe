@@ -15,6 +15,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['ADMIN'] }
   },
+
   {
     path: 'lista-entrega',
     loadComponent: () =>
@@ -41,6 +42,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['ADMIN'] }
   },
+  {
+    path: 'lista-clientes',
+    loadComponent: () =>
+      import('./components/lista-cliente/lista-cliente.component').then(
+        m => m.ListaClienteComponent
+      ),
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN'] }
+  },
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
 ];
