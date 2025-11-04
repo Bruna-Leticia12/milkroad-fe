@@ -34,7 +34,6 @@
   text-align: center;
 }
 
-/* 🔹 Filtros (Status, Buscar e Lupa) */
 .filtros {
   width: 100%;
   max-width: 520px;
@@ -63,7 +62,6 @@
     }
   }
 
-  /* 🔹 Botão da lupa */
   button {
 
       margin-bottom: 15px;
@@ -79,7 +77,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease-in-out;
-    flex-shrink: 0; /* impede encolhimento */
+    flex-shrink: 0; 
 
     &:hover {
       background-color: #0d47a1;
@@ -100,7 +98,6 @@
   text-align: center;
 }
 
-/* 🔹 Lista de clientes */
 .cliente-list {
   display: flex;
   flex-direction: column;
@@ -152,14 +149,13 @@
 }
 
 .status-ativo {
-  background-color: #28a745; /* verde */
+  background-color: #28a745;
 }
 
 .status-inativo {
-  background-color: #b0b0b0; /* cinza */
+  background-color: #b0b0b0;
 }
 
-/* 🔹 Formulário de edição */
 .form-edicao {
   margin-top: 30px;
   background: #ffffff;

@@ -8,7 +8,6 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
-  // ✅ Somente ADMIN pode cadastrar clientes
   {
     path: 'cadastro-cliente',
     component: CadastroClienteComponent,
@@ -32,7 +31,6 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
-  // ✅ Apenas ADMIN pode acessar “Atualização de Rotas”
   {
     path: 'atualizacao-rota',
     loadComponent: () =>

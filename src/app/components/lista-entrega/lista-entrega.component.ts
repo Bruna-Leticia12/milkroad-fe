@@ -25,7 +25,6 @@ export class ListaClienteComponent implements OnInit {
     this.perfil = localStorage.getItem('perfil');
     this.api.get<EntregaDTO[]>('/entregas/hoje').subscribe({
       next: (data) => {
-        // ✅ Ordenar alfabeticamente pelo nome do cliente
         this.entregas = data.sort((a, b) =>
           a.clienteNome.localeCompare(b.clienteNome, 'pt-BR', { sensitivity: 'base' })
         );

@@ -49,11 +49,10 @@
 .entrega-item {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 🔹 nome à esquerda e botão à direita */
+  justify-content: space-between;
   gap: 10px;
 }
 
-/* caixa do nome */
 .nome-box {
   flex: 1;
   padding: 12px 20px;
@@ -69,7 +68,6 @@
   box-sizing: border-box;
 }
 
-/* botão separado */
 .status-btn {
   flex: 0 0 auto;
   border: none;
@@ -87,9 +85,9 @@
 }
 
 .status-ok {
-  background-color: #28a745; /* verde */
+  background-color: #28a745;
 }
 
 .status-nao {
-  background-color: #dc3545; /* vermelho */
+  background-color: #dc3545;
 }

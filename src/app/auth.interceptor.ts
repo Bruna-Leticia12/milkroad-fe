@@ -18,7 +18,6 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('token');
     let cloned = req;
 
-    // ✅ Só adiciona header Authorization se não for o login
     if (token && !req.url.includes('/auth/login')) {
       cloned = req.clone({
         setHeaders: {

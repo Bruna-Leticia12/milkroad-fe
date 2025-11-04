@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class CadastroClienteComponent {
   form: FormGroup;
   loading = false;
-  perfil: string | null = null; // ✅ declarada
+  perfil: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -68,7 +68,6 @@ export class CadastroClienteComponent {
     }
   }
 
-  // ✅ Novo método para funcionar com o HTML atual
   voltar() {
     this.voltarMenu();
   }

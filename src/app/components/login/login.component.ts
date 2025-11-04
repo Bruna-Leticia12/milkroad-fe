@@ -26,10 +26,9 @@ export class LoginComponent {
     });
   }
 
-  /** 🔹 Evita erro caso a imagem do logo não carregue */
   onImageError(event: Event) {
     const img = event.target as HTMLImageElement;
-    img.style.display = 'none'; // Esconde a imagem quebrada
+    img.style.display = 'none';
   }
 
   submit() {
@@ -41,13 +40,12 @@ export class LoginComponent {
         this.loading = false;
         this.snack.open('Login efetuado!', 'OK', { duration: 2000 });
 
-        // Redireciona conforme perfil
         if (usuario.perfil === 'CLIENTE') {
           localStorage.setItem('clienteId', usuario.id.toString());
           localStorage.setItem('nomeCliente', usuario.nome);
           this.router.navigateByUrl('/cancelar-entrega');
         } else {
-          this.router.navigateByUrl('/menu'); // admin
+          this.router.navigateByUrl('/menu'); 
         }
       },
       error: (err) => {

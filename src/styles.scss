@@ -1,35 +1,24 @@
-// Importa o módulo de theming do Angular Material
 @use '@angular/material' as mat;
 
-// Define o tema global da aplicação utilizando Angular Material
 html {
   @include mat.theme((
     color: (
-      primary: mat.$azure-palette,   // Cor primária da aplicação
-      tertiary: mat.$blue-palette,   // Cor terciária (detalhes, destaques)
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
     ),
-    typography: Roboto,  // Fonte principal
-    density: 0,          // Densidade padrão (0 = normal, pode ser ajustado para +1/-1)
+    typography: Roboto,
+    density: 0,
   ));
 }
 
 body {
-  // Define o esquema de cores inicial.
-  // Pode ser alterado para `dark` para habilitar o tema escuro,
-  // ou para `light dark` para respeitar as preferências do sistema operacional.
   color-scheme: light;
-
-  // Define o plano de fundo padrão, fonte e cores do texto,
-  // utilizando as variáveis do Angular Material.
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
-
-  // Remove margens padrão aplicadas pelo navegador.
   margin: 0;
 }
 
-// Estilizações globais adicionais
 html, body { 
   height: 100%; 
 }

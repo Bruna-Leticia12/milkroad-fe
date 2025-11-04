@@ -18,7 +18,6 @@ export class MenuComponent {
     this.router.navigate(['/login']);
   }
 
-  // opcional — navegação programática se precisar no futuro
   navigate(path: string) {
     const url = `/${path}`;
     console.log('Tentando navegar para', url);

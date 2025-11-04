@@ -80,7 +80,7 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.rota = {
           ...data,
-          date: this.formatarDataBrasil(data.date) // ✅ Conversão da data aqui
+          date: this.formatarDataBrasil(data.date)
         };
 
         this.loading = false;
@@ -98,10 +98,9 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // ✅ Converte data ISO para o formato brasileiro
   private formatarDataBrasil(dataISO: string): string {
     const data = new Date(dataISO);
-    return data.toLocaleDateString('pt-BR'); // Ex: 24/10/2025
+    return data.toLocaleDateString('pt-BR');
   }
   
   private initMap(): void {

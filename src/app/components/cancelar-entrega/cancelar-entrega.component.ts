@@ -183,7 +183,6 @@ export class CancelarListaClienteComponent implements OnInit {
     }
   }
 
-  /** ✅ Atualiza entregas da tela sem pedir novo login */
   private atualizarLista() {
     const clienteId = Number(localStorage.getItem('clienteId') || this.clienteSelecionadoId);
     if (clienteId) {
@@ -192,7 +191,6 @@ export class CancelarListaClienteComponent implements OnInit {
     this.resetarTela();
   }
 
-  /** ✅ Mantém cliente selecionado e permite novo cancelamento */
   private resetarTela(resetCliente: boolean = true) {
     setTimeout(() => {
       this.mensagem = '';

@@ -4,7 +4,6 @@
   <h2 class="titulo" *ngIf="!isAdmin">Olá, {{ nomeCliente }}!</h2>
   <h2 class="titulo" *ngIf="isAdmin">Cancelar Entrega</h2>
 
-  <!-- Campo de busca ADMIN -->
   <div *ngIf="isAdmin" class="admin-controls">
     <div class="search-wrapper">
       <input
@@ -18,7 +17,6 @@
       <button class="clear-btn" *ngIf="filtroCliente" (click)="limparBusca()">×</button>
     </div>
 
-    <!-- Lista aparece apenas após digitar -->
     <div class="lista-entregas" *ngIf="mostrarLista && clientesFiltrados.length > 0">
       <button
         class="cliente-item"
