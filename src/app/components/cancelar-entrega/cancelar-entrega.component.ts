@@ -174,7 +174,7 @@ export class CancelarListaClienteComponent implements OnInit {
           error: (err) => {
             console.error('Erro ao cancelar entrega', err);
             const texto = err?.error?.message || err?.error || 'Não foi possível cancelar.';
-            this.mensagem = 'Erro: ' + texto;
+            this.mensagem = texto;
           }
         });
     } else {

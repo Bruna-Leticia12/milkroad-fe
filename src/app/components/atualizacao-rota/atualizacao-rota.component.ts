@@ -67,7 +67,10 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
   }
   
   private carregarRota(): void {
-    const hoje = new Date().toISOString().split('T')[0];
+    // 🔥 CORREÇÃO 1: Data local sem UTC
+    const d = new Date();
+    const hoje = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
     const token = localStorage.getItem('token');
     
     if (!token) {
@@ -80,7 +83,7 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.rota = {
           ...data,
-          date: this.formatarDataBrasil(data.date)
+          date: this.formatarDataBrasil(data.date) // já corrigido
         };
 
         this.loading = false;
@@ -98,9 +101,10 @@ export class AtualizacaoRotaComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // 🔥 CORREÇÃO 2: Formatação sem new Date() (evita fuso horário)
   private formatarDataBrasil(dataISO: string): string {
-    const data = new Date(dataISO);
-    return data.toLocaleDateString('pt-BR');
+    const [ano, mes, dia] = dataISO.split('-');
+    return `${dia}/${mes}/${ano}`;
   }
   
   private initMap(): void {
